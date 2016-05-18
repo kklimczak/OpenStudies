@@ -1,2 +1,6 @@
 rootProject.name = 'OpenStudies'
+include 'OpenStudiesApp'
+include 'OpenStudiesRest'
+
+//springBootVersion = 1.3.0.RELEASE
 
