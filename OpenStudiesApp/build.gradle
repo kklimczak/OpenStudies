@@ -17,7 +17,5 @@ dependencies {
     compile project(':OpenStudiesRest')
     compile project(':OpenStudiesService')
     compile project(':OpenStudiesWebApp')
-    compile group: 'org.projectlombok', name: 'lombok', version: '1.16.8'
     compile('org.springframework:spring-context')
-    compile('org.springframework.boot:spring-boot-starter')
 }
