@@ -12,11 +12,6 @@ public class OpenStudiesRestEndpoint {
     @Autowired
     private DataService dataService;
 
-    @RequestMapping("/")
-    public String getMyTestName () {
-        return "Test";
-    }
-
     @RequestMapping("/subject")
     public SubjectDto getMySubject () {
         return dataService.getMySubjectToRest();
