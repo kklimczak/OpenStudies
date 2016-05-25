@@ -6,17 +6,21 @@ import pl.konradklimczak.openstudies.data.Subject.Subject;
 import pl.konradklimczak.openstudies.data.Subject.SubjectDto;
 import pl.konradklimczak.openstudies.data.Subject.SubjectRepository;
 
+import javax.annotation.Resource;
 import java.util.ArrayList;
 import java.util.List;
 
 @Service
 public class DataService {
 
-//    @Autowired
-//    SubjectRepository subjectRepository;
+    @Autowired
+    SubjectRepository subjectRepository;
+
 
     public SubjectDto getMySubjectToRest() {
-        return Subject.builder().name("WDI").description("Nice subject!").build().asDto();
+        Subject subject = Subject.builder().name("WDI").description("Nice subject!").build();
+        subjectRepository.save(subject);
+        return subject.asDto();
     }
 
     public List<SubjectDto> getMySubjects() {
