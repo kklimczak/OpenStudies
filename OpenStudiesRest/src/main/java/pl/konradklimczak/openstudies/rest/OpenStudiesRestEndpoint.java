@@ -1,9 +1,8 @@
 package pl.konradklimczak.openstudies.rest;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.http.HttpStatus;
+import org.springframework.web.bind.annotation.*;
 import pl.konradklimczak.openstudies.data.Subject.SubjectDto;
 import pl.konradklimczak.openstudies.service.DataService;
 
@@ -15,13 +14,24 @@ public class OpenStudiesRestEndpoint {
     @Autowired
     private DataService dataService;
 
-    @RequestMapping("/subject")
-    public SubjectDto getMySubject () {
-        return dataService.getMySubjectToRest();
+    @RequestMapping(value = "/subject", method = RequestMethod.GET)
+    public List<SubjectDto> getAllSubjects () {
+        return dataService.getAllSubjects();
     }
 
-    @RequestMapping(value = "/subjects", method = RequestMethod.GET)
-    public List<SubjectDto> getMySubjects () {
-        return dataService.getMySubjects();
+    @RequestMapping(value = "/subject/{id}", method = RequestMethod.GET)
+    public SubjectDto getSubjectById (@PathVariable Long id) {
+        return dataService.getSubjectById(id);
+    }
+
+    @RequestMapping(value = "/subject", method = RequestMethod.PUT)
+    public SubjectDto createOrUpdateSubject(@RequestBody SubjectDto subjectDto) {
+        return dataService.createOrUpdateSubject(subjectDto);
+    }
+
+    @RequestMapping(value = "/subject/{id}", method = RequestMethod.DELETE)
+    @ResponseStatus(HttpStatus.NO_CONTENT)
+    public void deleteSubjectById(@PathVariable Long id) {
+        dataService.deleteSubjectById(id);
     }
 }
