@@ -5,6 +5,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 import pl.konradklimczak.openstudies.data.Subject.SubjectDto;
 import pl.konradklimczak.openstudies.service.DataService;
+import pl.konradklimczak.openstudies.utils.ExceptionsHandler.Exceptions.ElementDoesNotExist;
 
 import java.util.List;
 
@@ -20,7 +21,7 @@ public class OpenStudiesRestEndpoint {
     }
 
     @RequestMapping(value = "/subject/{id}", method = RequestMethod.GET)
-    public SubjectDto getSubjectById (@PathVariable Long id) {
+    public SubjectDto getSubjectById (@PathVariable Long id) throws ElementDoesNotExist {
         return dataService.getSubjectById(id);
     }
 

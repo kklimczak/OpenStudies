@@ -14,6 +14,7 @@ dependencies {
     compile project(':OpenStudiesData')
     compile project(':OpenStudiesRest')
     compile project(':OpenStudiesService')
+    compile project(':OpenStudiesUtils')
     compile project(':OpenStudiesWebApp')
     compile('org.springframework:spring-context')
 }

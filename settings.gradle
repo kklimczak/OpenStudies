@@ -6,4 +6,5 @@ include 'OpenStudiesRest'
 include 'OpenStudiesService'
 include 'OpenStudiesWebApp'
 include 'OpenStudiesData'
+include 'OpenStudiesUtils'
 
