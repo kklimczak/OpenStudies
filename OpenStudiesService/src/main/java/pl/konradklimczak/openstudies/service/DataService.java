@@ -6,15 +6,16 @@ import pl.konradklimczak.openstudies.data.Subject.Subject;
 import pl.konradklimczak.openstudies.data.Subject.SubjectDto;
 import pl.konradklimczak.openstudies.data.Subject.SubjectRepository;
 
-import javax.annotation.Resource;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collector;
+import java.util.stream.Collectors;
 
 @Service
 public class DataService {
 
     @Autowired
-    SubjectRepository subjectRepository;
+    private SubjectRepository subjectRepository;
 
 
     public SubjectDto getMySubjectToRest() {
@@ -24,8 +25,14 @@ public class DataService {
     }
 
     public List<SubjectDto> getMySubjects() {
-        List<SubjectDto> subjectDtos = new ArrayList<SubjectDto>();
 
+        List<Subject> subjects = subjectRepository.findAll();
+
+        List<SubjectDto> subjectDtos = new ArrayList<>();
+
+        for (Subject subject : subjects) {
+            subjectDtos.add(subject.asDto());
+        }
 
         return subjectDtos;
     }

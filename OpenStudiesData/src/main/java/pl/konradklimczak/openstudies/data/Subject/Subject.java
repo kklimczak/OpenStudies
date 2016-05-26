@@ -23,7 +23,7 @@ public class Subject {
     private String description;
 
     public SubjectDto asDto() {
-        return SubjectDto.builder().name(name).description(description).build();
+        return SubjectDto.builder().id(id).name(name).description(description).build();
     }
 }
 
