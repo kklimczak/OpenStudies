@@ -32,7 +32,7 @@ public class OpenStudiesRestEndpoint {
 
     @RequestMapping(value = "/subject/{id}", method = RequestMethod.DELETE)
     @ResponseStatus(HttpStatus.NO_CONTENT)
-    public void deleteSubjectById(@PathVariable Long id) {
+    public void deleteSubjectById(@PathVariable Long id) throws ElementDoesNotExist {
         dataService.deleteSubjectById(id);
     }
 }

@@ -4,6 +4,7 @@ import lombok.extern.slf4j.Slf4j;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.stereotype.Service;
 import pl.konradklimczak.openstudies.data.Subject.Subject;
 import pl.konradklimczak.openstudies.data.Subject.SubjectDto;
@@ -48,9 +49,13 @@ public class DataService {
         return subject.asDto();
     }
 
-    public void deleteSubjectById(Long id) {
-        subjectRepository.delete(id);
-        logger.info("deleteSubjectById with id: {}", id);
+    public void deleteSubjectById(Long id) throws ElementDoesNotExist {
+        try {
+            subjectRepository.delete(id);
+            logger.info("deleteSubjectById with id: {}", id);
+        } catch (EmptyResultDataAccessException e) {
+            throw new ElementDoesNotExist("Element with id " + id + " doesn't exist!");
+        }
     }
 
 
