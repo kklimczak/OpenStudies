@@ -11,13 +11,11 @@ import java.io.Serializable;
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-public class SubjectDto implements Serializable {
+public class SubjectDetailDto implements Serializable {
 
-    private static final long serialVersionUID = -8458323828519822691L;
+    private static final long serialVersionUID = 8386194299561133154L;
 
     private Long id;
-
-    private Long departmentId;
-    private String name;
+    private Long subjectId;
     private String description;
 }

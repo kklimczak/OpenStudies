@@ -19,11 +19,12 @@ public class Subject {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
 
+    private Long departmentId;
     private String name;
     private String description;
 
     public SubjectDto asDto() {
-        return SubjectDto.builder().id(id).name(name).description(description).build();
+        return SubjectDto.builder().id(id).departmentId(departmentId).name(name).description(description).build();
     }
 }
 
