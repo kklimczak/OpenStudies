@@ -8,7 +8,7 @@ import org.springframework.stereotype.Service;
 import pl.konradklimczak.openstudies.data.Subject.Subject;
 import pl.konradklimczak.openstudies.data.Subject.SubjectDto;
 import pl.konradklimczak.openstudies.data.Subject.SubjectRepository;
-import pl.konradklimczak.openstudies.utils.ExceptionsHandler.Exceptions.ElementDoesNotExist;
+import pl.konradklimczak.openstudies.utils.ExceptionsHandler.Exceptions.NoElementException;
 
 import java.util.List;
 import java.util.stream.Collectors;
@@ -32,14 +32,13 @@ public class DataService {
         return subjectDtos;
     }
 
-    public SubjectDto getSubjectById(Long id) throws ElementDoesNotExist {
-        try {
-            SubjectDto subjectDto = subjectRepository.findOne(id).asDto();
-            logger.info("getSubjectById with id: {}", id);
-            return subjectDto;
-        } catch (NullPointerException e) {
-            throw new ElementDoesNotExist("Element with id " + id + " doesn't exist!");
+    public SubjectDto getSubjectById(Long id) throws NoElementException {
+        Subject subject = subjectRepository.findOne(id);
+        logger.info("getSubjectById with id: {}", id);
+        if (subject == null) {
+            throw new NoElementException("Element with id " + id + " doesn't exist!");
         }
+        return subject.asDto();
     }
 
     public SubjectDto createOrUpdateSubject(SubjectDto subjectDto) {
@@ -48,12 +47,12 @@ public class DataService {
         return subject.asDto();
     }
 
-    public void deleteSubjectById(Long id) throws ElementDoesNotExist {
+    public void deleteSubjectById(Long id) throws NoElementException {
         try {
             subjectRepository.delete(id);
             logger.info("deleteSubjectById with id: {}", id);
         } catch (EmptyResultDataAccessException e) {
-            throw new ElementDoesNotExist("Element with id " + id + " doesn't exist!");
+            throw new NoElementException("Element with id " + id + " doesn't exist!");
         }
     }
 

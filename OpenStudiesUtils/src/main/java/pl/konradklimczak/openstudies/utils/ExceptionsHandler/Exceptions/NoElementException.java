@@ -4,13 +4,13 @@ import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.ResponseStatus;
 
 @ResponseStatus(value = HttpStatus.BAD_REQUEST)
-public class ElementDoesNotExist extends Exception {
+public class NoElementException extends Exception {
 
-    public ElementDoesNotExist() {
+    public NoElementException() {
         super();
     }
 
-    public ElementDoesNotExist(String message) {
+    public NoElementException(String message) {
         super(message);
     }
 }

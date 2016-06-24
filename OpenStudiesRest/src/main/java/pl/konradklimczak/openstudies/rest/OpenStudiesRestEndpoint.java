@@ -5,7 +5,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 import pl.konradklimczak.openstudies.data.Subject.SubjectDto;
 import pl.konradklimczak.openstudies.service.DataService;
-import pl.konradklimczak.openstudies.utils.ExceptionsHandler.Exceptions.ElementDoesNotExist;
+import pl.konradklimczak.openstudies.utils.ExceptionsHandler.Exceptions.NoElementException;
 
 import java.util.List;
 
@@ -21,7 +21,7 @@ public class OpenStudiesRestEndpoint {
     }
 
     @RequestMapping(value = "/subject/{id}", method = RequestMethod.GET)
-    public SubjectDto getSubjectById (@PathVariable Long id) throws ElementDoesNotExist {
+    public SubjectDto getSubjectById (@PathVariable Long id) throws NoElementException {
         return dataService.getSubjectById(id);
     }
 
@@ -32,7 +32,7 @@ public class OpenStudiesRestEndpoint {
 
     @RequestMapping(value = "/subject/{id}", method = RequestMethod.DELETE)
     @ResponseStatus(HttpStatus.NO_CONTENT)
-    public void deleteSubjectById(@PathVariable Long id) throws ElementDoesNotExist {
+    public void deleteSubjectById(@PathVariable Long id) throws NoElementException {
         dataService.deleteSubjectById(id);
     }
 }
